@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header aria-labelledby="survery-title">
+      <h1 id="survery-title">Course Interest Survey Form</h1>
+      <p id="description" class="description center-text">
+        Thank you for your interest!
+      </p>
+    </header>
+    <main role="main">
+      <form role="form" action="" method="post" autocomplete="off">
+        <!-- Create Acct -->
+        <fieldset role="region" aria-label="consultant-acct">
+          <label for="name">
+            Name:
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter your name"
+              required />
+          </label>
+          <label for="email">
+            Email:
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Enter your email"
+              required />
+          </label>
+          <label for="password">
+            Password:
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Enter your password"
+              pattern="[a-z0-5]{8,}"
+              required />
+          </label>
+        </fieldset>
+        <!-- Past Experience -->
+        <fieldset role="region" aria-label="consultant-exp">
+          <label for="prevExp">
+            <input type="radio" name="experience" id="prevExp" class="inline" />
+            I have previous coding experience
+          </label>
+          <label for="noExp">
+            <input type="radio" name="experience" id="noExp" class="inline" />
+            I have no previous coding experience
+          </label>
+          <label for="course">
+            Which course are you interested in?
+            <select name="course" id="course">
+              <option value="">(select one)</option>
+              <option value="angular">Frontend Development - Angular</option>
+              <option value="react">Frontend Development - React</option>
+              <option value="sfd">Salesforce Development</option>
+              <option value="admin">Salesforce Business Admin</option>
+            </select>
+          </label>
+        </fieldset>
+        <!-- Upload Resume -->
+        <fieldset role="region" aria-label="consultant-resume">
+          <label for="consultant-resume">
+            Upload a resume:
+            <input
+              type="file"
+              name="consultant-resume"
+              id="consultant-resume" />
+          </label>
+          <label for="consultant-age">
+            Age:
+            <input
+              min="18"
+              max="75"
+              type="number"
+              name="consultant-age"
+              id="consultant-age"
+              placeholder="Select your age (years)"
+              required />
+          </label>
+          <label for="comment">
+            Comments:
+            <textarea
+              name="comment"
+              id="comment"
+              rows="3"
+              cols="30"
+              placeholder="Questions? Comments? Concerns?"></textarea>
+          </label>
+        </fieldset>
+        <!-- Submission -->
+        <label for="terms-and-conditions">
+          <input
+            id="terms-and-conditions"
+            type="checkbox"
+            required
+            name="terms-and-conditions"
+            class="inline" />
+          I accept the
+          <a href="">terms and conditions</a>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    </main>
+  </body>
+</html>
