@@ -15,11 +15,32 @@
       </p>
     </header>
     <main role="main">
-      <form role="form" action="" method="post" autocomplete="off">
-        <!-- Create Acct -->
+      <!-- Disable autocomplete: autocomplete='off'
+      form - entire form
+      input - specific input only
+    -->
+      <!-- action => where the form is submitted to -->
+      <!-- method => operation that occurs at submission  -->
+      <!-- autocomplete => default on, turn off for entire form -->
+      <form action="" method="post" autocomplete="off">
+        <!-- Basic Acct Info -->
+        <!-- <fieldset> => groups related widget/form controls together -->
+        <!-- role => used to describe the purpose of an element/section
+            - accessibility
+            - device application
+            - server-side processing
+            - complex data description
+      -->
+        <!-- aria-label => defines a string value that labels an interactive element -->
+        <!-- https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label -->
+        <!-- https://tink.uk/the-difference-between-aria-label-and-aria-labelledby/ -->
+        <!-- aria-labelledby => identifies the element(s) that labels an element -->
         <fieldset role="region" aria-label="consultant-acct">
+          <!-- <legend> => used to label a fieldset -->
+          <!-- <legend>Consultant</legend> -->
           <label for="name">
             Name:
+            <span class="sr-only">(Enter your full name)</span>
             <input
               type="text"
               name="name"
@@ -27,8 +48,15 @@
               placeholder="Enter your name"
               required />
           </label>
+          <!-- <label> => definess a label for <input>, <meter>, <progress>, <select>, and <textarea> elements -->
+          <!-- for => associates the label to its corresponding element -->
+          <!-- Give the label's for attr and the corresponding element's id attr the same value -->
           <label for="email">
             Email:
+            <!-- This element exists in the DOM for the screen reader but is not visible on the UI -->
+            <span class="sr-only">(Enter a valid email)</span>
+            <!-- type => define the type of input and enables native functionality and styling -->
+            <!-- required => attribute that will prevent a form from being submitted until all required fields are completed -->
             <input
               type="email"
               name="email"
@@ -36,30 +64,48 @@
               placeholder="Enter your email"
               required />
           </label>
-          <label for="password">
+          <label for="new-password">
             Password:
+            <span class="sr-only"
+              >(Create a secure password with a mix of letters and
+              numbers)</span
+            >
+            <!-- pattern => accepts a regular expression that defines the form the input value should have -->
+            <!-- other attributes: minlength, maxlength, min, max, etc -->
             <input
+              id="new-password"
+              name="new-password"
               type="password"
-              name="password"
-              id="password"
-              placeholder="Enter your password"
               pattern="[a-z0-5]{8,}"
-              required />
-          </label>
+              placeholder="Create a new password"
+              required
+          /></label>
         </fieldset>
-        <!-- Past Experience -->
-        <fieldset role="region" aria-label="consultant-exp">
+        <!-- Class Selection -->
+        <fieldset role="region" aria-label="course-interest">
+          <!-- <legend>Experience</legend> -->
+          <span class="sr-only"
+            >(Select the option that best describes you)</span
+          >
           <label for="prevExp">
+            <!-- name => specifies the name of the input element that serves as the reference to form data -->
+            <!-- required to have input values passed when the form is submitted  -->
+            <!-- Give multiple inputs the same name when only one option can be selected => only final value can be passed on submission -->
             <input type="radio" name="experience" id="prevExp" class="inline" />
             I have previous coding experience
           </label>
           <label for="noExp">
             <input type="radio" name="experience" id="noExp" class="inline" />
-            I have no previous coding experience
+            I have no previous experience
           </label>
           <label for="course">
             Which course are you interested in?
+            <span class="sr-only">
+              (Select the course you are most interested in)
+            </span>
+            <!-- <select> -->
             <select name="course" id="course">
+              <!-- <option> -->
               <option value="">(select one)</option>
               <option value="angular">Frontend Development - Angular</option>
               <option value="react">Frontend Development - React</option>
@@ -68,38 +114,44 @@
             </select>
           </label>
         </fieldset>
-        <!-- Upload Resume -->
+        <!-- Profile -->
         <fieldset role="region" aria-label="consultant-resume">
-          <label for="consultant-resume">
+          <!-- <legend>Apply!</legend> -->
+          <label for="profile-resume">
             Upload a resume:
-            <input
-              type="file"
-              name="consultant-resume"
-              id="consultant-resume" />
+            <span class="sr-only">(Upload your resume)</span>
+            <input type="file" name="profile-resume" id="profile-resume" />
           </label>
-          <label for="consultant-age">
+          <label for="age">
             Age:
+            <span class="sr-only">
+              (Enter your age. You must be at least 18 years old to apply)
+            </span>
             <input
-              min="18"
-              max="75"
               type="number"
-              name="consultant-age"
-              id="consultant-age"
-              placeholder="Select your age (years)"
-              required />
+              name="age"
+              id="age"
+              min="18"
+              max="99"
+              required
+              placeholder="Select your age (years)" />
           </label>
           <label for="comment">
             Comments:
+            <span class="sr-only"
+              >(Enter any questions or comments you may have related to this
+              survey)</span
+            >
             <textarea
               name="comment"
               id="comment"
-              rows="3"
               cols="30"
+              rows="3"
               placeholder="Questions? Comments? Concerns?"></textarea>
           </label>
         </fieldset>
-        <!-- Submission -->
-        <label for="terms-and-conditions">
+        <!-- Legal then submission -->
+        <label for="terms-and-conditions" name="terms-and-conditions">
           <input
             id="terms-and-conditions"
             type="checkbox"
@@ -107,7 +159,9 @@
             name="terms-and-conditions"
             class="inline" />
           I accept the
-          <a href="">terms and conditions</a>
+          <a href="https://www.freecodecamp.org/news/terms-of-service/"
+            >terms and conditions</a
+          >
         </label>
         <input type="submit" value="Submit" />
       </form>
